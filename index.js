@@ -10,6 +10,19 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+const images = [
+  { src: "/img/capybara.jpg", url: "https://matias.me/nsfw/" },
+  { src: "/img/cat.jpg", url: "https://www.google.com/" },
+  {
+    src: "/img/shiba.jpg",
+    url: "https://www.youtube.com/watch?v=JqHaJkIvz0Q&ab_channel=MG",
+  },
+];
+
+const getRandomImage = () => {
+  return images[Math.floor(Math.random() * images.length)];
+};
+
 app.engine(
   "hbs",
   engine({
@@ -29,11 +42,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  res.render("home", { title: "Home Page" });
+  res.render("home", { title: "Home Page", image: getRandomImage() });
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", { title: "Login Page" });
+  res.render("login", { title: "Login Page", image: getRandomImage() });
 });
 
 app.get("/error-test", (req, res, next) => {
