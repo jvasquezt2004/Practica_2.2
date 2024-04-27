@@ -28,10 +28,16 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Inicio" });
 });
 
+app.get("/error-test", (req, res, next) => {
+  throw new Error(
+    "Error intencional para probar si funciona el mensaje y la pagina de error 500"
+  );
+});
+
 app.use((req, res, next) => {
   res.status(404).render("error404", { title: "404 - Pagina no encontrada" });
 });
-app.use((req, res) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res
     .status(500)
