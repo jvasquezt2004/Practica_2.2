@@ -25,7 +25,15 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.render("home", { title: "Inicio" });
+  res.redirect("/home");
+});
+
+app.get("/home", (req, res) => {
+  res.render("home", { title: "Home Page" });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login", { title: "Login Page" });
 });
 
 app.get("/error-test", (req, res, next) => {
