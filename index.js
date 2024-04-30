@@ -2,13 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { engine } = require("express-handlebars");
 const path = require("path");
-const { title } = require("process");
 
 dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const images = [
   { src: "/img/capybara.jpg", url: "https://matias.me/nsfw/" },
